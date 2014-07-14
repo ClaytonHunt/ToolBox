@@ -1,9 +1,15 @@
-/* globals */
-(function(){ 
-    'use strict'; 
+/* global task, require */
 
-    desc('This is the default task.');
-    task('default', function (params) {
-        console.log('This is the default task.');
-    });
-}());
+require('./build_modules/lintBuild.js');
+require('./build_modules/lintApplication.js');
+require('./build_modules/buildLogging.js');
+
+(function(task){ 
+    'use strict';
+
+    task('default', [
+        'Build Started Log',
+        'lint build',
+        'lint application',
+        'Build Finished Log']);
+}(task));
