@@ -12,6 +12,7 @@
     function getApplicationFileList() {
         var files = new jake.FileList();
         files.include('../src/**/*.js');
+        files.include('tests/**/*.js');
         files.exclude('build');
         files.exclude('packages');
         files.exclude('../src/**/thirdParty/*.js');

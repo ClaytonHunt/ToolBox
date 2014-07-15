@@ -13,6 +13,8 @@
         var files = new jake.FileList();
         files.include('**/*.js');
         files.exclude('node_modules');
+        files.exclude('jasmine');
+        files.exclude('tests');
         return files;
     }
 

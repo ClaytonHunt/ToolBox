@@ -1,4 +1,4 @@
-/* global desc, task, require, jake, fail */
+/*global desc, task, jake, complete, fail */
 
 require('./build_modules/lintBuild.js');
 require('./build_modules/lintApplication.js');
@@ -22,8 +22,7 @@ require('./build_modules/buildLogging.js');
 
     desc('Test Everything');
     task('test client', [], function() {
-        shell("node node_modules/karma/bin/karma run", colors.red + "CLIENT TESTS FAILED" + colors.reset, function() {
-        });
+        shell("node node_modules/karma/bin/karma run", colors.red + "CLIENT TESTS FAILED" + colors.reset, complete);
     }, { async: true });
 
     var shell = function(command, errorMessage, callback) {
