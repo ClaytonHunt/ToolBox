@@ -19,16 +19,35 @@
         });
 
         describe('Subscribing to an event', function () {
-            module.ScrewDriver.prototype.getSubscribers = function () {
-                return 0;
-            };
-
             it('has a subscribe function', function () {
                 var a = new module.ScrewDriver();
-
                 expect(a.subscribe).toBeDefined();
+            });
+
+            it('can subscribe', function () {
+                var a = new module.ScrewDriver();
+                a.subscribe(new Dummy());
+            });
+        });
+
+        describe('Publishing an event', function() {
+            it('has a publish function', function () {
+                var a = new module.ScrewDriver();
+                expect(a.publish).toBeDefined();
             });
         });
     });
+
+    var Dummy = function () {
+        this.counter = 0;
+
+        this.increment = function () {
+            this.counter++;
+        };
+
+        this.event = {
+            test: this.increment
+        };
+    };
 
 }(ToolBox));

@@ -6,23 +6,22 @@ var ToolBox = (function () {
     };
 }());
 
-
 (function (module) {
     'use strict';
 
     var screwdriver = null;
+    var subscribers = [];
 
     module.ScrewDriver = function () {
-        if (screwdriver)
-            return screwdriver;
-        
-        screwdriver = this;
-        return this;
+        screwdriver = screwdriver || this;
+        return screwdriver;
+    };    
+
+    module.ScrewDriver.prototype.subscribe = function (subscriber) {
+        subscribers.push(subscriber);
     };
 
-    var p = module.ScrewDriver.prototype;
-
-    p.subscribe = function () {
+    module.ScrewDriver.prototype.publish = function (event) {
 
     };
 }(ToolBox));
