@@ -35,18 +35,40 @@
                 var a = new module.ScrewDriver();
                 expect(a.publish).toBeDefined();
             });
+
+            it('can publish an event', function() {
+                var a = new module.ScrewDriver();
+                expect(function() {
+                    a.publish('test');
+                }).not.toThrow();
+            });
+
+            it('can publish to subscribers', function() {
+                // Arrange
+                var a = new module.ScrewDriver();
+                var d = new Dummy();
+
+                a.subscribe(d);
+                expect(d.counter).toBe(0);
+
+                // Act
+                a.publish('test');
+
+                // Asset
+                expect(d.counter).toBe(1);
+            });
         });
     });
 
     var Dummy = function () {
-        this.counter = 0;
+        var self = this;
 
-        this.increment = function () {
-            this.counter++;
-        };
+        self.counter = 0;
 
-        this.event = {
-            test: this.increment
+        self.event = {
+            test: function () {
+                self.counter++;
+            }
         };
     };
 
