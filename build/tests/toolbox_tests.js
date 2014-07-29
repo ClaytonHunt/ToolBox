@@ -1,15 +1,15 @@
-/* global describe, beforeEach, it, expect */
+/* global describe, beforeEach, it, expect, ToolBox */
 
-(function() {
+(function(module) {
     'use strict';
 
     describe('ToolBox', function() {
         describe('In General', function() {
-           it('exists', function() {
-               expect(ToolBox).toBeDefined();
-               expect(ToolBox).not.toBeNull();
-           })
+            it('exists', function() {
+                expect(module).toBeDefined();
+                expect(module).not.toBeNull();
+            });
         });
-    })
+    });
 
-}());
+}(ToolBox));
