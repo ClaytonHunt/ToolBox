@@ -19,40 +19,45 @@
         });
 
         describe('Subscribing to an event', function () {
+            var sd;
+
+            beforeEach(function() {
+                sd = new module.ScrewDriver();
+            });
+
             it('has a subscribe function', function () {
-                var a = new module.ScrewDriver();
-                expect(a.subscribe).toBeDefined();
+                expect(sd.subscribe).toBeDefined();
             });
 
             it('can subscribe', function () {
-                var a = new module.ScrewDriver();
-                a.subscribe(new Dummy());
+                sd.subscribe(new Dummy());
             });
         });
 
         describe('Publishing an event', function() {
+            var sd;
+
+            beforeEach(function() {
+                sd = new module.ScrewDriver();
+            });
+
             it('has a publish function', function () {
-                var a = new module.ScrewDriver();
-                expect(a.publish).toBeDefined();
+                expect(sd.publish).toBeDefined();
             });
 
             it('can publish an event', function() {
-                var a = new module.ScrewDriver();
                 expect(function() {
-                    a.publish('test');
+                    sd.publish('test');
                 }).not.toThrow();
             });
 
             it('can publish to subscribers', function() {
                 // Arrange
-                var a = new module.ScrewDriver();
                 var d = new Dummy();
-
-                a.subscribe(d);
-                expect(d.counter).toBe(0);
+                sd.subscribe(d);
 
                 // Act
-                a.publish('test');
+                sd.publish('test');
 
                 // Asset
                 expect(d.counter).toBe(1);

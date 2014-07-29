@@ -17,7 +17,6 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-        '../src/scripts/toolbox.js',
         '../src/**/*.js',
         'tests/**/*.js'
     ],
